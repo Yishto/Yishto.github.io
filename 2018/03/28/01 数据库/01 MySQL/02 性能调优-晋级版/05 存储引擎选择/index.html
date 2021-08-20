@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	
+	<!-- title -->
+	
+	<title>
+	
+		05 存储引擎选择 | 
+	 
+	Yishto&#39;s notes
+	</title>
+	
+	<!-- keywords,description -->
+	 
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+	
+
+
+	<!-- search -->
+	<script>
+		var searchEngine = "https://www.google.com/search?q=";
+		if(typeof searchEngine == "undefined" || searchEngine == null || searchEngine == ""){
+			searchEngine = "https://www.google.com/search?q=";
+		}
+		var homeHost = "yishto.top";
+		if(typeof homeHost == "undefined" || homeHost == null || homeHost == ""){
+			homeHost = window.location.host;
+		}
+	</script>
+
+
+	
+<link rel="stylesheet" href="/css/main.css">
+
+	
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/darcula.min.css">
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js"></script>
+
+	
+<script src="/js/main.js"></script>
+
+	
+		
+<script src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+
+		
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
+
+	
+	
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?3efe99c287df5a1d6f0d02d187e403c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<header id="header">
+    <a id="title" href="/" class="logo">Yishto's notes</a>
+
+	<ul id="menu">
+		<li class="menu-item">
+			
+		</li>
+	
+		<li class="menu-item">
+			<a href="/tags" class="menu-item-link">标签</a>
+		</li>
+	
+
+	
+		<li class="menu-item">
+			<a href="/categories" class="menu-item-link">分类</a>
+		</li>
+	
+
+
+		<li class="menu-item">
+			<a href="https://github.com/Yishto" class="menu-item-link" target="_blank">
+				<i class="fa fa-github fa-2x"></i>
+			</a>
+		</li>
+	</ul>
+</header>
+
+	
+<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										01 数据库
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										01 MySQL
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										01 性能调优-基础版
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2018/03/20/01%20%E6%95%B0%E6%8D%AE%E5%BA%93/01%20MySQL/01%20%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98-%E5%9F%BA%E7%A1%80%E7%89%88/01%E5%A6%82%E4%BD%95%E5%8F%91%E7%8E%B0%E6%9C%89%E9%97%AE%E9%A2%98%E7%9A%84SQL/">
+										01如何发现有问题的SQL
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2018/03/20/01%20%E6%95%B0%E6%8D%AE%E5%BA%93/01%20MySQL/01%20%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98-%E5%9F%BA%E7%A1%80%E7%89%88/02%20%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/">
+										02 索引的优化方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2018/03/22/01%20%E6%95%B0%E6%8D%AE%E5%BA%93/01%20MySQL/01%20%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98-%E5%9F%BA%E7%A1%80%E7%89%88/03%20%E5%85%B6%E5%AE%83%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/">
+										03 其它优化方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2018/03/22/01%20%E6%95%B0%E6%8D%AE%E5%BA%93/01%20MySQL/01%20%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98-%E5%9F%BA%E7%A1%80%E7%89%88/04%20%E8%A1%A8%E7%9A%84%E6%8B%86%E5%88%86%E4%BC%98%E5%8C%96/">
+										04 表的拆分优化
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										02 性能调优-晋级版
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2018/03/23/01%20%E6%95%B0%E6%8D%AE%E5%BA%93/01%20MySQL/02%20%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98-%E6%99%8B%E7%BA%A7%E7%89%88/01%20%E7%BC%93%E5%AD%98%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96/">
+										01 缓存参数优化
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2018/03/23/01%20%E6%95%B0%E6%8D%AE%E5%BA%93/01%20MySQL/02%20%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98-%E6%99%8B%E7%BA%A7%E7%89%88/02%20%E8%A1%A8%E7%BB%93%E6%9E%84%E4%BC%98%E5%8C%96/">
+										02 表结构优化
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2018/03/24/01%20%E6%95%B0%E6%8D%AE%E5%BA%93/01%20MySQL/02%20%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98-%E6%99%8B%E7%BA%A7%E7%89%88/03%20%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/">
+										03 索引优化
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2018/03/26/01%20%E6%95%B0%E6%8D%AE%E5%BA%93/01%20MySQL/02%20%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98-%E6%99%8B%E7%BA%A7%E7%89%88/04%20SQL%E4%BC%98%E5%8C%96/">
+										04 SQL优化
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file active">
+									<a href="/2018/03/28/01%20%E6%95%B0%E6%8D%AE%E5%BA%93/01%20MySQL/02%20%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98-%E6%99%8B%E7%BA%A7%E7%89%88/05%20%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E9%80%89%E6%8B%A9/">
+										05 存储引擎选择
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										02 数据结构与算法
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2021/05/20/02%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/index/">
+										index
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										03 计算机组成原理
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2021/05/20/03%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/index/">
+										index
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										04 操作系统
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2021/05/20/04%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index/">
+										index
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										05 计算机网络
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2021/05/20/05%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/index/">
+										index
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										06 系统设计
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2021/05/20/06%20%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/index/">
+										index
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										07 分布式
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2021/05/20/07%20%E5%88%86%E5%B8%83%E5%BC%8F/index/">
+										index
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										08 服务器
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2021/05/20/08%20%E6%9C%8D%E5%8A%A1%E5%99%A8/index/">
+										index
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										09 笔记梳理
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2018/03/20/09%20%E7%AC%94%E8%AE%B0%E6%A2%B3%E7%90%86/01%20%E5%A6%82%E4%BD%95%E5%8F%91%E7%8E%B0%E6%9C%89%E9%97%AE%E9%A2%98%E7%9A%84SQL/">
+										01 如何发现有问题的SQL
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2021/05/20/09%20%E7%AC%94%E8%AE%B0%E6%A2%B3%E7%90%86/index/">
+										index
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										10 其他
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2021/05/20/10%20%E5%85%B6%E4%BB%96/index/">
+										index
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content">
+		<h1 id="article-title">
+
+	05 存储引擎选择
+</h1>
+<div class="article-meta">
+	
+	<span>Yishto</span>
+	<span>2018-03-28 06:53:21</span>
+		<div id="article-categories">
+    
+		<span>Categories：</span>
+            
+    
+
+    
+		<span>Tags：</span>
+            
+    
+		</div>
+
+</div>
+
+<div id="article-content">
+	<h6 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h6><ol>
+<li>特性<br>不支持事务 : MyISAM 存储引擎不支持事务, 所以对于事务有要求的业务场景不能使用 .<br>表级锁定 : 其锁定机制是表级索引 , 这虽然可以让锁定的实现成本很小 , 但是也同时大大降低了其并发性能 .<br>读写互相阻塞 : 不仅会在写入的时候阻塞读取 , MyISAM 还会在读取的时候阻塞写入 , 但读本身并不会阻塞另外的读 .<br>只会缓存索引 : MyISAM 可以通过 key_buffer 缓存以大大提高访问性能减少磁盘 IO , 但是这个缓存区只会缓存索引 , 而不会缓存数据 . </li>
+<li>使用场景<br>不需要事务支持(不支持)<br>并发相对较低(锁定机制问题)<br>数据修改相对较少(阻塞问题)<br>以读为主<br>数据一致性要求不是非常高</li>
+<li>最佳实践<br>尽量索引(缓存机制)<br>调整读写优先级 , 根据实际需求确保重要操作更优先<br>启用延迟插入改善大批量写入性能<br>尽量顺序操作 , 让 insert 数据都写入到尾部 , 减少阻塞<br>分解大的操作 , 降低单个操作的阻塞时间<br>降低并发数 , 某些高并发场景通过应用来进行排队机制<br>对于相对静态的数据 , 充分利用 Query Cache 可以极大的提高访问效率<br>MyISAM 的 count 只有在全盘扫描的时候特别高效 , 带有其他条件的count 都需要进行实际的数据访问<h6 id="InnoDB"><a href="#InnoDB" class="headerlink" title="InnoDB"></a>InnoDB</h6></li>
+<li>特性<br>具有较好的事务支持 :支持４个事务隔离级别，　支持多版本读<br>行级锁定 : 通过索引实现 , 全盘扫遍依然会表锁 , 注意间隙锁的影响<br>读写阻塞与实务隔离级别相关<br>具有非常搞笑的缓存特性 : 能缓存索引 , 也能缓存数据<br>整个表的主键以 Cluster 方式存储 , 组成一颗平衡树<br>所有Secondary Index 都会保存主键信息</li>
+<li>使用场景<br>需要事务支持(具有较好的事务特性)<br>行级锁定对高并发有很好的适应能力 , 但需要确保查询是通过索引完成<br>数据更新较为频繁的场景<br>数据一致性要求较高<br>硬件设备内存较大 , 可以利用 InnoDB 较好的缓存能力提高内存利用率 , 尽可能的减少磁盘 IO</li>
+<li>最佳实践<br>主键尽可能小 , 避免给Secondary index带来过大的空间负担<br>全表扫描 , 因为会使用表锁<br>尽可能缓存素有的索引和数据 , 提高响应速度<br>在大批量插入的时候 , 尽量自己控制事务而不要使用 autocommit 自动提交<br>合理设置 <code>innodb_flush_log_at_trx_commit</code> 参数值 , 不要过度追求安全性<br>避免主键更新 , 因为这会带来大量的数据移动<h6 id="NDBCluster"><a href="#NDBCluster" class="headerlink" title="NDBCluster"></a>NDBCluster</h6></li>
+<li>特性<br>分布式 : 分布式存储引擎 , 可以由多个 NDBCluster 存储引擎组成集群分别存放整体数据的一部分<br>支持事务 : 和InnoDB一样 , 支持事务<br>可与 mysqld 不在一台主机 : 可以和 mysqld 分开存在于独立的主机上 , 然后通过网络和 mysqld 通信交互<br>内存需求量巨大 : 新版本索引以及被索引的数据必须存放在内存中 , 老版本所有数据和索引必须存在与内存中 </li>
+<li>使用场景<br>具有非常高的并发需求<br>对单个请求的响应并不是非常的 critical 查询简单 , 过滤条件较为固定 , 每次请求数据量较少 , 又不希望自己进行水平Sharding</li>
+<li>最佳实践<br>尽可能让查询简单 , 避免数据的跨节点传输<br>尽可能满足SQL节点的计算性能 , 大一点的集群 SQL节点会明显多于 Data 节点<br>在各节点之间尽可能使用万兆网络环境互联 , 以减少数据在网络层传输过程中的延时</li>
+</ol>
+<p><strong>注 :</strong> 以上三个存储引擎是目前相对主流的存储引擎 , 还有其他类似如 : Memory , Merge , CSV , Archive 等存储引擎的使用场景都相对较少 , 这里就不一一的分析了 .  </p>
+
+</div>
+
+
+    <div class="post-guide">
+        <div class="item left">
+            
+              <a href="/2021/05/20/10%20%E5%85%B6%E4%BB%96/index/">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  
+              </a>
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2018/03/26/01%20%E6%95%B0%E6%8D%AE%E5%BA%93/01%20MySQL/02%20%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98-%E6%99%8B%E7%BA%A7%E7%89%88/04%20SQL%E4%BC%98%E5%8C%96/">
+                04 SQL优化
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+	<div id="vcomments"></div>
+
+
+<script>
+	
+		// 评论
+		new Valine({
+			av: AV,
+			el: '#vcomments',
+			notify: false,
+			verify: false,
+			path: window.location.pathname,
+			appId: '',
+			appKey: '',
+			placeholder: '请输入评论',
+			avatar: 'retro',
+			recordIP: false
+		})
+	
+	
+</script>
+	</div>
+	<div id="footer">
+	<p>
+	©2018-<span id="footerYear"></span>
+	Yishto
+
+	
+		|
+		<span id="busuanzi_container_site_pv">
+			pv
+			<span id="busuanzi_value_site_pv"></span>
+		</span>
+		|
+		<span id="busuanzi_container_site_uv">
+			uv
+			<span id="busuanzi_value_site_uv"></span>
+		</span>
+	
+	<br>
+	Theme Tree Powered by Hexo
+	</p>
+</div>
+<script type="text/javascript"> 
+	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+</script>
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>
